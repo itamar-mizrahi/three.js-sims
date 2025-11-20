@@ -19,7 +19,12 @@ export class SceneManager {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.shadowMap.enabled = true;
-        document.body.appendChild(this.renderer.domElement);
+        const appContainer = document.getElementById('app');
+        if (appContainer) {
+            appContainer.appendChild(this.renderer.domElement);
+        } else {
+            document.body.appendChild(this.renderer.domElement);
+        }
 
         // 4. Setup Lights
         this.setupLights();

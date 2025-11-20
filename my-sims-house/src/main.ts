@@ -26,6 +26,11 @@ uiManager.setOnColorChange((colorValue) => {
     }
 });
 
+// Handle Delete from UI
+uiManager.setOnDelete(() => {
+    interactionManager.deleteSelectedObject();
+});
+
 // --- Global Functions for HTML ---
 
 // Add Item

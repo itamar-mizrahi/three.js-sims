@@ -128,6 +128,15 @@ export class InteractionManager {
         this.uiManager.hidePanel();
     }
 
+    public deleteSelectedObject() {
+        if (this.selectedObject) {
+            this.transformControl.detach();
+            this.roomManager.removeItem(this.selectedObject);
+            this.selectedObject = null;
+            this.uiManager.hidePanel();
+        }
+    }
+
     private onKeyDown(event: KeyboardEvent) {
         switch (event.key.toLowerCase()) {
             case 'r':
@@ -138,12 +147,7 @@ export class InteractionManager {
                 break;
             case 'delete':
             case 'backspace':
-                if (this.selectedObject) {
-                    this.transformControl.detach();
-                    this.roomManager.removeItem(this.selectedObject);
-                    this.selectedObject = null;
-                    this.uiManager.hidePanel();
-                }
+                this.deleteSelectedObject();
                 break;
         }
     }

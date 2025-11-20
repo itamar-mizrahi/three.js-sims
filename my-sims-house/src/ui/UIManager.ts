@@ -3,18 +3,27 @@ import * as THREE from 'three';
 export class UIManager {
     private panel: HTMLElement;
     private colorBtns: NodeListOf<Element>;
+    private deleteBtn: HTMLElement | null;
     private onColorChange: (color: number) => void;
+    private onDelete: () => void;
 
     constructor() {
         this.panel = document.getElementById('properties-panel') as HTMLElement;
         this.colorBtns = document.querySelectorAll('.color-btn');
+        this.deleteBtn = document.getElementById('delete-btn');
+        
         this.onColorChange = () => {};
+        this.onDelete = () => {};
 
         this.setupEventListeners();
     }
 
     public setOnColorChange(callback: (color: number) => void) {
         this.onColorChange = callback;
+    }
+
+    public setOnDelete(callback: () => void) {
+        this.onDelete = callback;
     }
 
     private setupEventListeners() {
@@ -30,8 +39,11 @@ export class UIManager {
             });
         });
 
-        // Prevent clicks on UI from propagating to the scene (handled in main/interaction manager usually, 
-        // but good to have a utility or flag here if needed. For now, we just expose the panel).
+        if (this.deleteBtn) {
+            this.deleteBtn.addEventListener('click', () => {
+                this.onDelete();
+            });
+        }
     }
 
     public showPanel() {
