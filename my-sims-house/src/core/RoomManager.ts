@@ -57,7 +57,7 @@ export class RoomManager {
     }
 
     public addItem(filename: string, savedData: SavedItem | null = null, onLoaded?: (model: THREE.Object3D) => void) {
-        this.loader.load(`/models/${filename}`, (gltf) => {
+        this.loader.load(`${import.meta.env.BASE_URL}models/${filename}`, (gltf) => {
             const model = gltf.scene;
             model.scale.set(3, 3, 3);
             model.userData.filename = filename;
