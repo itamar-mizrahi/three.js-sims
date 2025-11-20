@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # 1. הפרונט שלנו (הסימס)
+  # 1. Frontend
   frontend:
     build: .
     ports:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - backend
 
-  # 2. הבקאנד (Node.js)
+  # 2. Backend
   backend:
     build: ./backend
     ports:
@@ -19,14 +19,21 @@ services:
     depends_on:
       - db
 
-  # 3. מסד הנתונים (Redis)
+  # 3. Database (Redis)
   db:
     image: redis:alpine
     volumes:
       - redis_data:/data
     ports:
-      - "6379:6379" # אופציונלי, רק אם בא לך להתחבר עם Redis Desktop Manager מבחוץ
+      - "6379:6379"
+
+  # 4. Redis Insight (החדש!)
+  redis-insight:
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"
+    depends_on:
+      - db
 
 volumes:
   redis_data:
-
