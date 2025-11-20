@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # 1. הפרונט שלנו (הסימס)
+  frontend:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  # 2. הבקאנד (Node.js)
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_URL=redis://db:6379
+    depends_on:
+      - db
+
+  # 3. מסד הנתונים (Redis)
+  db:
+    image: redis:alpine
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379" # אופציונלי, רק אם בא לך להתחבר עם Redis Desktop Manager מבחוץ
+
+volumes:
+  redis_data:
+

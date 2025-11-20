@@ -45,3 +45,37 @@ canvas {
   transform: scale(1.1);
   border-color: #333;
 }
+
+#catalog-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.catalog-item {
+  width: 60px;
+  height: 60px;
+  background: #eee;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.catalog-item:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-5px);
+}

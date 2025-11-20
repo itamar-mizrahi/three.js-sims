@@ -1,0 +1,35 @@
+# --- שלב 1: הבנייה (Builder) ---
+# משתמשים בתמונת Node כדי לקמפל את הקוד
+FROM node:18-alpine as builder
+
+# הגדרת תיקיית עבודה
+WORKDIR /app
+
+# העתקת קבצי התלות (כדי לנצל את ה-Cache של דוקר)
+COPY package*.json ./
+
+# התקנת התלויות
+RUN npm install
+
+# העתקת שאר קבצי הפרויקט
+COPY . .
+
+# הרצת הבנייה - זה יוצר את תיקיית 'dist' עם הקבצים המוכנים
+RUN npm run build
+
+
+# --- שלב 2: השרת (Runner) ---
+# משתמשים ב-Nginx רזה מאוד
+FROM nginx:alpine
+
+# מחיקת דף ברירת המחדל של Nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# העתקת הקבצים המוכנים משלב הבנייה (Builder) לתוך תיקיית ה-HTML של Nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# חשיפת הפורט (דוקומנטציה בלבד)
+EXPOSE 80
+
+# הרצת השרת
+CMD ["nginx", "-g", "daemon off;"]

@@ -8,42 +8,46 @@
   </head>
   <body>
     <div id="app"></div>
+
+    <button
+      onclick="window.saveRoom()"
+      style="
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px;
+        z-index: 100;
+        cursor: pointer;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      "
+    >
+      💾 שמור עיצוב
+    </button>
+
     <div id="properties-panel" class="panel hidden">
       <h3>עיצוב אובייקט</h3>
       <p>בחר צבע:</p>
       <div class="colors">
-        <button
-          class="color-btn"
-          style="background-color: #e74c3c"
-          data-color="0xe74c3c"
-        ></button>
-        <button
-          class="color-btn"
-          style="background-color: #3498db"
-          data-color="0x3498db"
-        ></button>
-        <button
-          class="color-btn"
-          style="background-color: #f1c40f"
-          data-color="0xf1c40f"
-        ></button>
-        <button
-          class="color-btn"
-          style="background-color: #2ecc71"
-          data-color="0x2ecc71"
-        ></button>
-        <button
-          class="color-btn"
-          style="background-color: #ecf0f1"
-          data-color="0xecf0f1"
-        ></button>
-        <button
-          class="color-btn"
-          style="background-color: #34495e"
-          data-color="0x34495e"
-        ></button>
+        <button class="color-btn" style="background-color: #e74c3c" data-color="0xe74c3c"></button>
+        <button class="color-btn" style="background-color: #3498db" data-color="0x3498db"></button>
+        <button class="color-btn" style="background-color: #f1c40f" data-color="0xf1c40f"></button>
+        <button class="color-btn" style="background-color: #2ecc71" data-color="0x2ecc71"></button>
+        <button class="color-btn" style="background-color: #ecf0f1" data-color="0xecf0f1"></button>
+        <button class="color-btn" style="background-color: #34495e" data-color="0x34495e"></button>
       </div>
     </div>
+
+    <div id="catalog-bar">
+      <div class="catalog-item" onclick="window.addItem('chair.glb')">
+        🪑 כיסא
+      </div>
+      <div class="catalog-item" onclick="window.addItem('table.glb')">
+        🛑 שולחן
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
