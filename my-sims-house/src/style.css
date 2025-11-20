@@ -171,6 +171,28 @@ body {
   transform: scale(1.1);
 }
 
+.actions-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
 /* Buttons */
 .btn-primary {
   background: var(--primary);

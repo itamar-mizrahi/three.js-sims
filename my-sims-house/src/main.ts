@@ -31,6 +31,14 @@ uiManager.setOnDelete(() => {
     interactionManager.deleteSelectedObject();
 });
 
+uiManager.setOnRotateLeft(() => {
+    interactionManager.rotateSelectedObject(Math.PI / 2);
+});
+
+uiManager.setOnRotateRight(() => {
+    interactionManager.rotateSelectedObject(-Math.PI / 2);
+});
+
 // --- Global Functions for HTML ---
 
 // Add Item
