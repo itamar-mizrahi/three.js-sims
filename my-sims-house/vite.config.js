@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import path from 'path';
 
 export default defineConfig({
+  base: '/three.js-sims/',
   resolve: {
     alias: {
       // 1. מכריח את כל הטעינות של התוספות להגיע לאותה תיקייה פיזית
