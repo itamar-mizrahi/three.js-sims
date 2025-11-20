@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // חיבור ל-Redis
 // שימו לב: 'db' זה השם של הסרביס שנגדיר ב-Docker Compose
 const client = createClient({
-    url: 'redis://db:6379'
+    url: process.env.REDIS_URL || 'redis://localhost:6379'
 });
 
 client.on('error', (err) => console.log('Redis Client Error', err));
